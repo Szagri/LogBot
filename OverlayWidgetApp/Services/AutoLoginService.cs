@@ -13,6 +13,7 @@ namespace OverlayWidgetApp.Services
         private readonly UserDataService _user;
         private readonly Action _onLogin;
         private readonly StateCheckerService _state;
+
         public AutoLoginService(UserDataService user, SettingsService settings, Action onLogin, StateCheckerService state)
         {
             _user = user;
@@ -51,8 +52,8 @@ namespace OverlayWidgetApp.Services
                         wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[text()='Rozpoczęcie pracy']")));
                         driver.FindElement(By.XPath("//div[text()='Rozpoczęcie pracy']")).Click();
                     }
-                    wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector(".GFFDD5-DBGB.GFFDD5-DEGB.GFFDD5-DLDB")));
-                    driver.FindElement(By.CssSelector(".GFFDD5-DBGB.GFFDD5-DEGB.GFFDD5-DLDB")).Click();
+                    wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector(".GFFDD5-DCGB.GFFDD5-DFGB.GFFDD5-DMDB")));
+                    driver.FindElement(By.CssSelector(".GFFDD5-DCGB.GFFDD5-DFGB.GFFDD5-DMDB")).Click();
 
                     _user.Update(_user.Login, _user.PasswordD, DateTime.Now);
                     _user.Save();

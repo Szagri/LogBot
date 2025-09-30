@@ -3,6 +3,7 @@ using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using Microsoft.VisualBasic.ApplicationServices;
 using OverlayWidgetApp.Services;
 using SkiaSharp;
 
@@ -125,7 +126,17 @@ namespace OverlayWidgetApp
         public void Start(DateTime date)
         {
             string start = date.ToString("HH:mm");
-            string end = date.AddHours(8).ToString("HH:mm");
+            string end = "";
+
+            if (date.TimeOfDay < TimeSpan.FromHours(7))
+            {
+                end = new DateTime(date.Date.Year, date.Date.Month, date.Date.Day, 15, 0, 0).ToString("HH:mm");
+            }
+            else
+            {
+                end = date.AddHours(8).ToString("HH:mm");
+            }
+
             string displayText = $"Start: {start}  |  Koniec: {end}";
             RenderOverlay(displayText);
         }

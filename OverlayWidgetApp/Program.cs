@@ -27,7 +27,6 @@ namespace OverlayWidgetApp
                 {
                     //start of rest objects that not storage data
                     core.Ini();
-
                     //creating tray icon with menu and adding items to it
                     trayIcon = new NotifyIcon();
                     menu = new ContextMenuStrip();
@@ -75,7 +74,14 @@ namespace OverlayWidgetApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"B³¹d: {ex.Message}");
+                if (ex.Message.Contains("session not created") || ex.Message.Contains("only supports Chrome version"))
+                {
+                    MessageBox.Show("Zaktualizuj ChromeDrivera, aby by³ zgodny z wersj¹ Twojej przegl¹darki.");
+                }
+                else
+                {
+                    MessageBox.Show($"B³¹d: {ex.Message}");
+                }
             }
         }
     }

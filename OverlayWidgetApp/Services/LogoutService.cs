@@ -63,8 +63,8 @@ namespace OverlayWidgetApp.Services
                     return false;
                 });
 
-                wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector(".GFFDD5-DBGB.GFFDD5-DEGB.GFFDD5-DLDB")));
-                driver.FindElement(By.CssSelector(".GFFDD5-DBGB.GFFDD5-DEGB.GFFDD5-DLDB")).Click();
+                wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector(".GFFDD5-DCGB.GFFDD5-DFGB.GFFDD5-DMDB")));
+                driver.FindElement(By.CssSelector(".GFFDD5-DCGB.GFFDD5-DFGB.GFFDD5-DMDB")).Click();
                 logoutSuccesful = true;
                 if(_settings.ShowMessageOnLogout)
                 {

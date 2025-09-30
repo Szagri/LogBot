@@ -37,7 +37,16 @@ namespace OverlayWidgetApp.Services
             timer.Tick += Tick;
             timer.Interval = 1000;
             _reminderShown = false;
-            _logoutTime = _user.Date.AddHours(8);
+
+            if (_user.Date.TimeOfDay < TimeSpan.FromHours(7))
+            {
+                _logoutTime = new DateTime(_user.Date.Year, _user.Date.Month, _user.Date.Day, 15, 0, 0);
+            }
+            else
+            {
+                _logoutTime = _user.Date.AddHours(8);
+            }
+
             timer.Start();
         }
 

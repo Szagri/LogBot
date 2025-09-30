@@ -13,20 +13,27 @@ namespace OverlayWidgetApp.Services
 
         public bool CheckState()
         {
-            try
+            if(Environment.MachineName.Substring(0, 4) == "LKIE")
             {
-                using var enumerator = new MMDeviceEnumerator();
-                var device = enumerator.GetDefaultAudioEndpoint(DataFlow.Render, Role.Console);
-                if (device == null || device.FriendlyName == null)
+                return true;      
+            }
+            else
+            {
+                try
                 {
+                    using var enumerator = new MMDeviceEnumerator();
+                    var device = enumerator.GetDefaultAudioEndpoint(DataFlow.Render, Role.Console);
+                    if (device == null || device.FriendlyName == null)
+                    {
+                        return false;
+                    }
+                    return device.FriendlyName.Contains("Audio zdalne", StringComparison.OrdinalIgnoreCase);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Błąd audio: {ex.Message}", "Błąd audio", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
-                return device.FriendlyName.Contains("Audio zdalne", StringComparison.OrdinalIgnoreCase);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Błąd audio: {ex.Message}", "Błąd audio", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
             }
         }
     }

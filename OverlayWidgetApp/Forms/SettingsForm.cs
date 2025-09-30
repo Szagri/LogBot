@@ -103,7 +103,6 @@ namespace OverlayWidgetApp
         {
             this.Close();
             this.Dispose();
-
         }
     }
 }
